@@ -1,8 +1,10 @@
-import PausePlay from './PausePlay';
 import Robot from './Robot';
 import Object from './Object';
 import Task from './Task';
 import World from './World';
+import SimulationControls from './SimulationControls';
+
+const url = 'http://0.0.0.0:8000/';
 
 const Main = () => {
   const robotData = {
@@ -14,7 +16,7 @@ const Main = () => {
     defaultPosition: 'Location B',
   };
 
-   const objectsData = [
+  const objectsData = [
     {
       objectID: 1,
       objectName: 'Object 1',
@@ -24,9 +26,8 @@ const Main = () => {
       objectID: 2,
       objectName: 'Object 2',
       objectLocation: 'Location Y',
-    }
+    },
   ];
-
 
   const tasksData = [
     {
@@ -42,7 +43,7 @@ const Main = () => {
       taskDetails: 'Details of Task 2',
       robotID: 1,
       taskStatus: true,
-    }
+    },
   ];
 
   const worldData = {
@@ -55,27 +56,26 @@ const Main = () => {
   };
 
   return (
-    <> 
-      <PausePlay /> 
-
-      <div className='robot-section'>
-      <Robot robot={robotData} />
+    <>
+      <SimulationControls url={url} />
+      <div className="robot-section">
+        <Robot robot={robotData} />
       </div>
 
-      <div className='objects-section'>
-      {objectsData.map((object, index) => (
-        <Object key={index} object={object} />
-      ))}
+      <div className="objects-section">
+        {objectsData.map((object, index) => (
+          <Object key={index} object={object} />
+        ))}
       </div>
 
-        <div className='tasks-section'>
-      {tasksData.map((task, index) => (
-        <Task key={index} task={task} />
-      ))}
+      <div className="tasks-section">
+        {tasksData.map((task, index) => (
+          <Task key={index} task={task} />
+        ))}
       </div>
 
-      <div className='world-section'>
-      <World world={worldData} />
+      <div className="world-section">
+        <World world={worldData} />
       </div>
     </>
   );

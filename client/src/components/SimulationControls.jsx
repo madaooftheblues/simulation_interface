@@ -23,4 +23,29 @@ const PausePlay = ({ url }) => {
   return <button onClick={handleClick}>{state ? 'play' : 'pause'}</button>;
 };
 
-export default PausePlay;
+const Reset = ({ url }) => {
+  const [response, setResponse] = useState('');
+  const sendToServer = () => {
+    axios
+      .get(`${url}webots/reset`)
+      .then((response) => {
+        setResponse(response.data);
+      })
+      .catch((error) => {
+        console.error('Error sending string:', error);
+      });
+    console.log(response);
+  };
+  return <button onClick={sendToServer}> Reset </button>;
+};
+
+const SimulationControls = ({ url }) => {
+  return (
+    <>
+      <Reset url={url} />
+      <PausePlay url={url} />
+    </>
+  );
+};
+
+export default SimulationControls;
