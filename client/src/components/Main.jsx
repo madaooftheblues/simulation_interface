@@ -1,84 +1,40 @@
-import Robot from './Robot';
-import Object from './Object';
-import Task from './Task';
-import World from './World';
+import RobotList from './RobotList';
 import SimulationControls from './SimulationControls';
+import Header from './Header';
+import TaskContainer from './TaskContainer';
 
-const url = 'http://0.0.0.0:8000/';
+import axios from 'axios';
+
+const API_URL = 'http://0.0.0.0:8000/';
 
 const Main = () => {
-  const robotData = {
-    robotID: 1,
-    robotName: 'Robot 1',
-    batteryLevel: 80,
-    gripperType: 'Type A',
-    currentPosition: 'Location A',
-    defaultPosition: 'Location B',
-  };
+    const talk = async (route, message) => {
+        try {
+            const response = await axios.post(`${API_URL}webots/${route}`, { message: message });
 
-  const objectsData = [
-    {
-      objectID: 1,
-      objectName: 'Object 1',
-      objectLocation: 'Location X',
-    },
-    {
-      objectID: 2,
-      objectName: 'Object 2',
-      objectLocation: 'Location Y',
-    },
-  ];
+            console.log('Message sent:', response.data);
+        } catch (error) {
+            console.error('Error sending message:', error);
+        }
+    };
 
-  const tasksData = [
-    {
-      taskID: 1,
-      taskTitle: 'Task 1',
-      taskDetails: 'Details of Task 1',
-      robotID: 1,
-      taskStatus: false,
-    },
-    {
-      taskID: 2,
-      taskTitle: 'Task 2',
-      taskDetails: 'Details of Task 2',
-      robotID: 1,
-      taskStatus: true,
-    },
-  ];
+    const robots = [{ name: 'sas', batteryLevel: 100, position: [1, 1] },
+    { name: 'sas', batteryLevel: 100, position: [1, 1] }]
 
-  const worldData = {
-    worldID: 1,
-    worldName: 'World 1',
-    numRobots: 5,
-    numObjects: 10,
-    currentTask: 'Task 1',
-    humanAgents: 3,
-  };
-
-  return (
-    <>
-      <SimulationControls url={url} />
-      <div className="robot-section">
-        <Robot robot={robotData} />
-      </div>
-
-      <div className="objects-section">
-        {objectsData.map((object, index) => (
-          <Object key={index} object={object} />
-        ))}
-      </div>
-
-      <div className="tasks-section">
-        {tasksData.map((task, index) => (
-          <Task key={index} task={task} />
-        ))}
-      </div>
-
-      <div className="world-section">
-        <World world={worldData} />
-      </div>
-    </>
-  );
+    return (
+        <div className="main-interface">
+            <div className="left-pane">
+                <RobotList robots={robots} />
+            </div>
+            <div className="middle-pane">
+                <Header />
+                <SimulationControls />
+                <TaskContainer />
+            </div>
+            <div className="right-pane">
+            </div>
+        </div>
+    );
 };
 
 export default Main;
