@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import RobotList from './RobotList';
 import SimulationControls from './SimulationControls';
 import Header from './Header';
@@ -6,11 +7,13 @@ import TaskContainer from './TaskContainer';
 import axios from 'axios';
 
 const API_URL = 'http://0.0.0.0:8000/';
+const base = 'webots/'
 
 const Main = () => {
+    const [robots, setRobots] = useState([])
     const talk = async (route, message) => {
         try {
-            const response = await axios.post(`${API_URL}webots/${route}`, { message: message });
+            const response = await axios.post(API_URL + base + route, { message: message });
 
             console.log('Message sent:', response.data);
         } catch (error) {
@@ -18,8 +21,17 @@ const Main = () => {
         }
     };
 
-    const robots = [{ name: 'sas', batteryLevel: 100, position: [1, 1] },
-    { name: 'sas', batteryLevel: 100, position: [1, 1] }]
+    const fetchRobots = async () => {
+        try {
+            const response = await axios.get(API_URL + base + 'robots');
+            console.log(response.data)
+            setRobots(response.data)
+        } catch (error) {
+            console.error('Error sending message:', error);
+        }
+    }
+
+    useEffect(() => fetchRobots, [])
 
     return (
         <div className="main-interface">
@@ -28,7 +40,7 @@ const Main = () => {
             </div>
             <div className="middle-pane">
                 <Header />
-                <SimulationControls />
+                <SimulationControls talk={talk}/>
                 <TaskContainer />
             </div>
             <div className="right-pane">

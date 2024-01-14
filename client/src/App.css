@@ -42,9 +42,9 @@ ul {
 }
 
 ul>li {
-    padding: 5px;
     display: flex;
     justify-content: center;
+    padding: 2px 0;
 }
 
 p {
@@ -59,9 +59,9 @@ input {
     border-style: solid;
     border-width: 1px;
     height: 40px;
-    outline: none;
     padding: 0 32px 0 15px;
     width: 100%;
+    font-size: 1rem;
 }
 
 .main-interface {
@@ -112,7 +112,6 @@ input {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     padding: 5px;
     margin: 0;
 }
@@ -221,6 +220,7 @@ input {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
+    border-radius: 10px;
 }
 
 .modal.active {
@@ -294,4 +294,64 @@ select {
   box-sizing: border-box;
   -webkit-appearance: none;
   -moz-appearance: none;
+}
+
+.label-input, .label-select {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.close-btn, .label-input > label, .label-select > label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+}
+
+.modal h2 {
+    margin-bottom: 20px;
+}
+
+.close-btn {
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 40px;
+    width: 40px;
+}
+
+.submit-btn {
+    background-color: var(--accent);
+    color: var(--text);
+}
+
+.objects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+  gap: 1rem;
+}
+
+.object-item {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.object-item.selected {
+  background-color: lightblue; 
+  border-color: blue; 
+}
+
+.object-item img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 0.5rem;
 }

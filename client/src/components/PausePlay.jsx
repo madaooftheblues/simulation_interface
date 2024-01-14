@@ -1,21 +1,12 @@
 import { useState } from 'react';
-import axios from 'axios';
 
-const PausePlay = ({ url }) => {
+const PausePlay = ({talk}) => {
     const [state, setState] = useState(true);
-    const [response, setResponse] = useState('');
 
     const sendToServer = (d) => {
-        axios
-            .post(`${url}webots/${d}`, { state: d })
-            .then((response) => {
-                setResponse(response.data);
-            })
-            .catch((error) => {
-                console.error('Error sending string:', error);
-            });
-        console.log(response);
+        talk('control', d)
     };
+
     const handleClick = () => {
         setState(!state);
         sendToServer(state ? 'play' : 'pause');
