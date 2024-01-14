@@ -27,7 +27,7 @@ const Task = ({ task, removeTask }) => {
             <button
                 className='close-btn'
                 type="button"
-                onClick={removeTask}
+                onClick={() => removeTask(task.id)}
             >
                 x
             </button>

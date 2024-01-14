@@ -22,18 +22,23 @@ const TaskForm = ({ tasks, onSubmit, onClose }) => {
         { name: 'RubberDuck', img: rubberduck },
     ]
 
+    const generateUniqueId = () => {
+        return '_' + Math.random().toString(36).substr(2, 9);
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
+        if (selectedObject === null) return;
 
         const newTask = {
-            id: tasks? tasks.length : 0,
+            id: generateUniqueId(),
             name: taskName,
             operation: operation,
             target: selectedObject.name
         };
 
         onSubmit(newTask);
-        onClose();
+        handleFormClose();
     };
 
     const handleTaskNameChange = (event) => {
@@ -44,6 +49,13 @@ const TaskForm = ({ tasks, onSubmit, onClose }) => {
         setOperation(event.target.value);
     };
 
+    const handleFormClose = () => {
+        setTaskName('')
+        setSelectedObject(null)
+        console.log(taskName)
+        onClose()
+    }
+
     return (
         <div>
             <h2>Task Form</h2>
@@ -52,18 +64,20 @@ const TaskForm = ({ tasks, onSubmit, onClose }) => {
                     id='task-form-name'
                     label='Task Name'
                     type='text'
+                    value={taskName}
                     onChange={handleTaskNameChange}
                 />
                 <LabelSelect
                     id='task-form-operation'
                     label='Operation'
                     options={options}
+                    value={operation}
                     onChange={handleOperationChange}
                 />
                 <button
                     className='close-btn'
                     type="button"
-                    onClick={onClose}
+                    onClick={handleFormClose}
                 >
                     x
                 </button>

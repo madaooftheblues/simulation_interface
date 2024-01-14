@@ -5,11 +5,11 @@ const TaskList = ({ tasks, removeTask }) => {
         <div className="task-list">
             {tasks && tasks.length <= 0 ? <span> No task added yet! </span> :
                 <ul className="flex-c">
-                    {tasks && tasks.map((task, index) => (
-                        <li key={index}>
+                    {tasks && tasks.map((task) => (
+                        <li key={task.id}>
                             <Task
-                                task={{ ...task, id: index }}
-                                removeTask={() => removeTask(index)} />
+                                task={task}
+                                removeTask={removeTask} />
                         </li>
                     ))}
                 </ul>
