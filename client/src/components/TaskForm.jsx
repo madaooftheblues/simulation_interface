@@ -3,20 +3,33 @@ import PropTypes from 'prop-types';
 import LabelInput from "./LabelInput";
 import LabelSelect from "./LabelSelect";
 import Objects from "./Objects";
+import apple from '../assets/objects/apple.svg'
+import orange from '../assets/objects/orange.svg'
+import wineglass from '../assets/objects/wineglass.svg'
+import soccerball from '../assets/objects/soccerball.svg'
+import rubberduck from '../assets/objects/rubberduck.svg'
 
-const TaskForm = ({ onSubmit, onClose }) => {
+const TaskForm = ({ tasks, onSubmit, onClose }) => {
     const [taskName, setTaskName] = useState('');
     const [operation, setOperation] = useState('PickPlace');
     const [selectedObject, setSelectedObject] = useState(null);
     const options = ['PickPlace']
-    const objects = [{ name: 'Apple' }, { name: 'Banana' }]
+    const objects = [
+        { name: 'Apple', img: apple },
+        { name: 'Orange', img: orange },
+        { name: 'Wineglass', img: wineglass },
+        { name: 'SoccerBall', img: soccerball },
+        { name: 'RubberDuck', img: rubberduck },
+    ]
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
         const newTask = {
+            id: tasks? tasks.length : 0,
             name: taskName,
             operation: operation,
+            target: selectedObject.name
         };
 
         onSubmit(newTask);

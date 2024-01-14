@@ -35,6 +35,9 @@ const Main = () => {
     const addTask = (task) => {
         setTasks([...tasks, task])
     }
+    const removeTask = (id) => {
+        setTasks(tasks.filter((t) => t.id != id))
+    }
 
     return (
         <div className="main-interface">
@@ -44,7 +47,11 @@ const Main = () => {
             <div className="middle-pane">
                 <Header />
                 <SimulationControls talk={talk} />
-                <TaskContainer tasks={tasks} addTask={addTask} />
+                <TaskContainer
+                    tasks={tasks}
+                    addTask={addTask}
+                    removeTask={removeTask}
+                />
             </div>
             <div className="right-pane">
             </div>
