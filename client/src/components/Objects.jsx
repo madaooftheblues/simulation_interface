@@ -7,7 +7,7 @@ const ObjectItem = ({ img, name, onClick, selected }) => {
     );
 };
 
-const Objects = ({ objects, selectedObject, setSelectedObject}) => {
+const Objects = ({ objects, selectedObject, setSelectedObject }) => {
 
     return (
         <div className="objects-grid">
@@ -17,7 +17,8 @@ const Objects = ({ objects, selectedObject, setSelectedObject}) => {
                     img={object.img}
                     name={object.name}
                     onClick={() => setSelectedObject(object)}
-                    selected={object === selectedObject}
+                    selected={selectedObject != null &&
+                        object.name === selectedObject.name}
                 />
             ))}
         </div>
