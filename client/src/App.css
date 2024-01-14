@@ -198,15 +198,20 @@ input {
 
 .task-container {
     background-color: var(--bg-color-primary);
-    height: 70vh;
+    height: 100vh;
+    max-height: 400px; /* Set a max height for the container */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
     position: relative;
 }
 
 #task-fab {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    position: fixed; /* Change to fixed position */
+  bottom: 10px; /* Adjust the bottom spacing */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1; /* Ensure the button is above the modal */
 }
 
 .modal {
@@ -221,6 +226,7 @@ input {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
+    z-index: 0;
 }
 
 .modal.active {
@@ -295,3 +301,22 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
 }
+
+.task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+  
+  .column {
+    width: 48%;
+    box-sizing: border-box;
+  }
+  
+  .column img {
+    max-width: 100%;
+    height: auto;
+  }
