@@ -9,7 +9,7 @@ import wineglass from '../assets/objects/wineglass.svg'
 import soccerball from '../assets/objects/soccerball.svg'
 import rubberduck from '../assets/objects/rubberduck.svg'
 
-const TaskForm = ({ tasks, onSubmit, onClose }) => {
+const TaskForm = ({ onSubmit, onClose }) => {
     const [taskName, setTaskName] = useState('');
     const [operation, setOperation] = useState('PickPlace');
     const [selectedObject, setSelectedObject] = useState(null);
@@ -52,7 +52,6 @@ const TaskForm = ({ tasks, onSubmit, onClose }) => {
     const handleFormClose = () => {
         setTaskName('')
         setSelectedObject(null)
-        console.log(taskName)
         onClose()
     }
 
