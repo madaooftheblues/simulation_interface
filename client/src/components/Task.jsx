@@ -6,7 +6,7 @@ import soccerball from '../assets/objects/soccerball.svg'
 import rubberduck from '../assets/objects/rubberduck.svg'
 import Chip from './Chip'
 
-const Task = ({ task, removeTask }) => {
+const Task = ({ task, removeTask}) => {
     const iconsMap = {
         Apple: apple,
         Wineglass: wineglass,
@@ -15,7 +15,7 @@ const Task = ({ task, removeTask }) => {
         SoccerBall: soccerball
     };
     return (
-        <div className="task">
+        <div className='task'>
             <div className='task-img-container'>
                 <img src={manipulator} className='task-img' />
                 <img src={iconsMap[task.target]} className='task-img' />

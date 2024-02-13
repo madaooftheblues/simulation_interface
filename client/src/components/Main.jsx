@@ -86,8 +86,6 @@ const Main = () => {
                     removeTask={removeTask}
                 />
             </div>
-            <div className="right-pane">
-            </div>
         </div>
     );
 }

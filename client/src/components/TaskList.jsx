@@ -9,7 +9,8 @@ const TaskList = ({ tasks, removeTask }) => {
                         <li key={task.id}>
                             <Task
                                 task={task}
-                                removeTask={removeTask} />
+                                removeTask={removeTask}
+                            />
                         </li>
                     ))}
                 </ul>

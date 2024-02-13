@@ -67,8 +67,8 @@ input {
 .main-interface {
     margin: 0;
     display: grid;
-    grid-template-areas: "left center right";
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas: "left center";
+    grid-template-columns: 1fr 2fr;
     height: 100vh;
     gap: 10px;
 }
@@ -210,9 +210,13 @@ input {
 #task-fab {
     position: fixed;
     bottom: 10px;
-    left: 50%;
+    left: 65.5%;
     transform: translateX(-50%);
     z-index: 0;
+    background-color: black;
+    border: 2px solid var(--accent);
+    color: var(--text);
+    margin-bottom: 40px;
 }
 
 .modal {
@@ -382,6 +386,10 @@ select {
     width: 100%;
     transition-duration: 0.5s;
     transform: scale(1);
+}
+
+.task .executing {
+    border: 2px solid red;
 }
 
 .task-img {
